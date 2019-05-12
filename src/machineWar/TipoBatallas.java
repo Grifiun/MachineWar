@@ -18,16 +18,26 @@ public class TipoBatallas extends Menus{
     protected JPanel panelTipoBatallas = new JPanel();
     private JButton[] botonesTipoBatallas = new JButton[3];
     protected PVE pve;
+    /**
+     * Constructor de la clase "TipoBatallas", se encarga de la copia del heap de menus
+     * @param menus 
+     */
     public TipoBatallas(Menus menus) {
         setMenus(menus);   
         menus.agregarVentana(panelTipoBatallas);
     }
-    
+    /**
+     * Genera los botones que necesita el panel "panelTipoBatallas"
+     */
     public void tipoBatllas(){
         String[] titulos = {"PVE", "PVP", "REGRESAR"};        
         agregarComponentes(panelTipoBatallas, botonesTipoBatallas, titulos);
     }
-    
+    /**
+     * Hace los cambios necesarios para que los botones del panel tengan una acción al ser pulsados
+     * @param i
+     * @param boton 
+     */
     @Override
     public void agregarAccionBoton(int i, JButton boton){
         ActionListener accion = new ActionListener() {

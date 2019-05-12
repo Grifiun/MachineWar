@@ -10,7 +10,11 @@ package machineWar;
  * @author guatemla
  */
 public class Tanques extends Vehiculos{
-    
+    /**
+     * Constructor de la clase Vehiculo, inicializa el ataque, la defensa y la puntería del vehiculo
+     * @param nombreVehiculo
+     * @param tipoVehiculo 
+     */
     public Tanques(String nombreVehiculo, String tipoVehiculo) {
         super(nombreVehiculo, tipoVehiculo);
         setAtaque(10);

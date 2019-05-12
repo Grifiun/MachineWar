@@ -92,19 +92,32 @@ public class Reportes extends Menus{
         };        
         boton.addActionListener(accion);
     }
-    public void modificarAreaTexto(JTextArea areaTexto, int x, int y){
-        
+    
+    /**
+     * rediseña el JTextArea "areaTexto", donde "x" es la posición que tendrá en el eje horizontal y "y" en el eje vertical
+     * @param areaTexto
+     * @param x
+     * @param y 
+     */
+    public void modificarAreaTexto(JTextArea areaTexto, int x, int y){        
         areaTexto.setBackground(Color.DARK_GRAY);
         areaTexto.setForeground(Color.CYAN);
         areaTexto.setBounds(x, y, 120, 200);
         panelReportes.add(areaTexto);
     
     }
+    /**
+     * Coloca las diversas Areas de texto que se usarán en los Reportes
+     */
     public void establecerAreasTexto(){
         modificarAreaTexto(areaTextoVehiculos, 160, 20);
         modificarAreaTexto(areaTextoTipoVehiculos, 280, 20);
     }
     
+    /**
+     * Actualiza los datos de las areas de texto
+     * @param idJugador 
+     */
     public void reiniciarAreaTextoVehiculos(int idJugador){        
         areaTextoVehiculos.setText(null);
         areaTextoTipoVehiculos.setText(null);

@@ -33,14 +33,20 @@ public class CrearJugadores extends Menus{
         setMenus(menus);
         menus.agregarVentana(panelCrearJugadores);
     }
-    
+    /**
+     * Creacion de "botonesCrearJugadores"
+     */
     public void crearJugadores(){
         String[] titulos = {"TANQUE", "AVION", "FINALIZAR"};        
         agregarComponentes(panelCrearJugadores, botonesCrearJugadores, titulos);
         crearCajaTexto();
         crearMensaje();        
     }
-    
+    /**
+     * Sobre-escritura de las acciones que tendrán los botones
+     * @param i
+     * @param boton 
+     */
     @Override
     public void agregarAccionBoton(int i, JButton boton){
         ActionListener accion = new ActionListener() {            
@@ -77,7 +83,9 @@ public class CrearJugadores extends Menus{
         };                            
         boton.addActionListener(accion);
     }
-    
+    /**
+     * Creación de un JTextField llamado "cajaTexto", el cual leerá los datos necesarios
+     */
     public void crearCajaTexto(){
         cajaTexto = new JTextField();            
         panelCrearJugadores.add(cajaTexto);
@@ -85,7 +93,9 @@ public class CrearJugadores extends Menus{
         cajaTexto.setForeground(Color.CYAN);
         cajaTexto.setBounds(350, 305, 100, 20);
     }
-    
+    /**
+     * Creacion de un label "mensaje" que se encargará de escribir los datos solicitados
+     */
     public void crearMensaje(){
         mensaje.setBounds(343, 280, 200, 20);
         mensaje.setBackground(Color.DARK_GRAY);

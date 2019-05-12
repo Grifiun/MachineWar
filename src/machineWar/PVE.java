@@ -68,6 +68,10 @@ public class PVE extends Menus{
         };        
         boton.addActionListener(accion);
     }
+    /**
+     * Setter del objeto pve de la clase "PVE"
+     * @param pve 
+     */
     public void setPve(PVE pve){
         this.pve = pve;
     }

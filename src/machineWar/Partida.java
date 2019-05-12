@@ -9,16 +9,26 @@ public class Partida extends Menus{
     protected JPanel panelPartida = new JPanel();
     private JButton[] botonesPartida = new JButton[4];
     protected TipoBatallas tipoBatallas;
+    /**
+     * Constructor de la clase Partida
+     * @param menus 
+     */
     public Partida(Menus menus) {
         setMenus(menus);
         menus.agregarVentana(panelPartida);        
     }
-    
+    /**
+     * Creacion de los botones utilizados en este panel
+     */
     public void partida(){
         String[] titulos = {"BATALLA", "TIENDA", "REPORTES", "SALIR"};        
         agregarComponentes(panelPartida, botonesPartida, titulos);         
     }
-    
+    /**
+     * Sobre-escritura de las acciones que tendrán los botones generados anteriormente
+     * @param i
+     * @param boton 
+     */
     @Override
     public void agregarAccionBoton(int i, JButton boton){
         ActionListener accion = new ActionListener() {

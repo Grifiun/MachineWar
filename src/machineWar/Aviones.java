@@ -11,6 +11,11 @@ package machineWar;
  */
 public class Aviones extends Vehiculos{
     private double velocidad;
+    /**
+     * Constructor de la clase Vehiculos, inicializa los valores de ataque, defensa velocidad y punteria
+     * @param nombreVehiculo
+     * @param tipoVehiculo 
+     */
     public Aviones(String nombreVehiculo, String tipoVehiculo){
         super(nombreVehiculo, tipoVehiculo);
         this.velocidad = 1.1;
