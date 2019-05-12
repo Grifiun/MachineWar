@@ -65,7 +65,7 @@ public class Reportes extends Menus{
                 switch(i){
                     case 0:
                         System.out.println("VEHICULOS");      
-                        reiniciarAreaTextoVehiculos();
+                        reiniciarAreaTextoVehiculos(0);
                         break;
                     case 1:
                         System.out.println("BATALLAS");                        
@@ -105,12 +105,12 @@ public class Reportes extends Menus{
         modificarAreaTexto(areaTextoTipoVehiculos, 280, 20);
     }
     
-    public void reiniciarAreaTextoVehiculos(){
+    public void reiniciarAreaTextoVehiculos(int idJugador){        
         areaTextoVehiculos.setText(null);
         areaTextoTipoVehiculos.setText(null);
-        for(int i = 0; i < menus.datos.getSizeNombreVehiculos(); i++){
-            areaTextoVehiculos.append(menus.datos.getNombreVehiculos(i)+"\n");
-            areaTextoTipoVehiculos.append(menus.datos.getTipoVehiculos(i)+"\n");
+        for(int i = 0; i < menus.datos.getSizeNombreVehiculos(idJugador); i++){
+            areaTextoVehiculos.append(menus.datos.getNombreVehiculo(idJugador, i)+"\n");
+            areaTextoTipoVehiculos.append(menus.datos.getTipoVehiculo(idJugador, i)+"\n");
         }
     }
 }

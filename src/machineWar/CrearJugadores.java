@@ -18,7 +18,7 @@ import javax.swing.*;
  */
 public class CrearJugadores extends Menus{
     protected JPanel panelCrearJugadores = new JPanel();
-    private JButton[] botonesTipoVehiculo = new JButton[3];
+    private JButton[] botonesCrearJugadores = new JButton[3];
     private JButton finalizarCreacion;
     private JTextField cajaTexto;
     protected JLabel mensaje = new JLabel("NOMBRE VEHICULO");
@@ -36,9 +36,9 @@ public class CrearJugadores extends Menus{
     
     public void crearJugadores(){
         String[] titulos = {"TANQUE", "AVION", "FINALIZAR"};        
-        agregarComponentes(panelCrearJugadores, botonesTipoVehiculo, titulos);
+        agregarComponentes(panelCrearJugadores, botonesCrearJugadores, titulos);
         crearCajaTexto();
-        crearMensaje();
+        crearMensaje();        
     }
     
     @Override
@@ -48,17 +48,19 @@ public class CrearJugadores extends Menus{
             public void actionPerformed(ActionEvent e) {
                 
                 switch(i){
-                    case 0: 
-                            menus.datos.setNombreVehiculos(cajaTexto.getText(), "TANQUE");  
+                    case 0:                             
+                            //menus.datos.setNombreVehiculos(cajaTexto.getText(), "TANQUE", menus.datos.getSizeNombreJugadores());
+                            menus.datos.agregarVehiculo("Avion", cajaTexto.getText());
                             vehiculosCreados++;                        
                         break;
                     case 1: 
-                            menus.datos.setNombreVehiculos(cajaTexto.getText(), "AVION");
+                            //menus.datos.setNombreVehiculos(cajaTexto.getText(), "AVION", menus.datos.getSizeNombreJugadores());
+                            menus.datos.agregarVehiculo("Avion", cajaTexto.getText());
                             vehiculosCreados++;  
                         break;
-                    case 2:
+                    case 2:                            
                             System.out.println("USUARIO CREADO");
-                            menus.datos.setNombre(cajaTexto.getText());                            
+                            menus.datos.addNombre(cajaTexto.getText());                            
                             
                             panelCrearJugadores.setVisible(false);
                             partida = new Partida(menus);                            
@@ -66,7 +68,8 @@ public class CrearJugadores extends Menus{
                         break;     
                 }
                 cajaTexto.setText("");  
-                if(vehiculosCreados >= 3){
+                if(vehiculosCreados == 3){
+                   menus.datos.agregarListaVehiculos();
                    mensaje.setText("NOMBRE JUGADOR");
                 }
                 

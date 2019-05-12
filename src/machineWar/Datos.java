@@ -11,34 +11,53 @@ import java.util.List;
  * @author guatemla
  */
 public class Datos {
-    private String nombre;
-    private ArrayList<String> nombresVehiculos = new ArrayList<String>();
-    private ArrayList<String> tipoVehiculos = new ArrayList<String>();
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    private ArrayList<String> nombreJugadores = new ArrayList();
+    private List<List<Vehiculos>> listaVehiculos = new ArrayList<>();
+    private List<Vehiculos> vehiculos = new ArrayList();
+    
     /**
-     * Ingresa el nombre y tipo de los vehiculos
-     * @param nombresVehiculos
-     * @param tipoVehiculos 
+     * Agrega un nuevo usuario
+     * @param nombre 
      */
-    public void setNombreVehiculos(String nombresVehiculos, String tipoVehiculos) {
-        this.nombresVehiculos.add(nombresVehiculos);
-        this.tipoVehiculos.add(tipoVehiculos);
+    public void addNombre(String nombre) {
+        nombreJugadores.add(nombre);
+    }
+        
+    /**
+     * Crea un vehiculo y luego lo agrega a la Lista de vehiculos
+     * @param tipo
+     * @param nombreVehiculo 
+     */
+    public void agregarVehiculo(String tipo, String nombreVehiculo){
+        Vehiculos vehiculo;
+        if(tipo == "Avion"){
+            vehiculo = new Aviones(nombreVehiculo, tipo);            
+            vehiculos.add(vehiculo);
+        }
+        if(tipo == "Tanque"){
+            vehiculo = new Tanques(nombreVehiculo, tipo);
+            vehiculos.add(vehiculo); 
+        }       
     }
     
-    public String getNombreVehiculos(int i){
-        return nombresVehiculos.get(i);
+    public void agregarListaVehiculos(){
+        listaVehiculos.add(vehiculos);
     }
     
-    public String getTipoVehiculos(int i){
-        return tipoVehiculos.get(i);
+    public String getNombreVehiculo(int idJugador, int numVehiculo){
+        return listaVehiculos.get(idJugador).get(numVehiculo).getNombreVehiculo();
     }
     
-    public int getSizeNombreVehiculos(){ 
-        return nombresVehiculos.size();
+    public String getTipoVehiculo(int idJugador, int numVehiculo){
+        return listaVehiculos.get(idJugador).get(numVehiculo).getTipoVehiculo();
     }
     
+    public int getSizeNombreVehiculos(int idJugador){ 
+        return listaVehiculos.get(idJugador).size();
+    }
+    
+    public int getSizeNombreJugadores(){
+        return nombreJugadores.size();
+    }
     
 }
