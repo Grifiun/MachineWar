@@ -48,6 +48,7 @@ public class Partida extends Menus{
                         reportes.reportes();
                         break; 
                     case 3:                        
+                        datos.guardarDatos();
                         menus.panelMP.setVisible(true);
                         break; 
                 }

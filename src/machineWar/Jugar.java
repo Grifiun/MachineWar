@@ -9,6 +9,7 @@ public class Jugar extends Menus{
     private JButton[] botonesJugar = new JButton[3];
     public JPanel panelJugar = new JPanel();  
     protected Nuevo nuevo;
+    protected Cargar cargar;
     
     /**
      * Constructor de la clase Jugar, se encarga unicamente de hacer una copia del Heap del objeto menus de tipo Menus
@@ -46,6 +47,8 @@ public class Jugar extends Menus{
                         break;
                     case 1:
                         System.out.println("CARGAR");
+                        cargar = new Cargar(menus);
+                        cargar.cargar();
                         break;
                     case 2:
                         System.out.println("SALIR");

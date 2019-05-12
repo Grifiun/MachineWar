@@ -13,6 +13,7 @@ public class Menus extends JFrame{
     protected Jugar jugar;
     protected PVP pvp;
     protected Reportes reportes;   
+    protected Partida partida;
     protected Datos datos = new Datos();
     protected JPanel panelMP = new JPanel();      
     private String titulos[] = {"JUGAR", "PVP", "REPORTES", "SALIR"};    
@@ -27,6 +28,8 @@ public class Menus extends JFrame{
         this.setLocationRelativeTo(null);// Centrar ventana al centro          
         agregarComponentes(panelMP, botonesMP, titulos);
         agregarVentana(panelMP);
+        datos.cargarDatos();
+        //datos.cargarDatos();
     }
     
     /**
@@ -138,9 +141,9 @@ public class Menus extends JFrame{
                         reportes.reportes();
                         
                         break;
-                    case 3:
+                    case 3:                                               
                         System.out.println("salir");
-                        
+                        datos.guardarDatos();
                         break;
                 }
             }

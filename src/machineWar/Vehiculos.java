@@ -1,9 +1,10 @@
 package machineWar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vehiculos {
+public class Vehiculos implements Serializable{
     private String nombreVehiculo;
     private int puntosVida;
     private int puntosPoder;

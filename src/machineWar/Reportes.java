@@ -8,6 +8,8 @@ package machineWar;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.*;
 
 /**
@@ -19,6 +21,7 @@ public class Reportes extends Menus{
     protected JPanel panelReportes = new JPanel();
     private JTextArea areaTextoVehiculos = new JTextArea();
     private JTextArea areaTextoTipoVehiculos = new JTextArea();
+    private JComboBox listaJugadores;
     private Partida partida;
     private boolean mostrarPanelMP = true;
     
@@ -49,6 +52,7 @@ public class Reportes extends Menus{
         String[] titulos = {"VEHICULOS", "BATALLAS", "MEJOR V.", "PEOR V.", "EXPORTAR", "REGRESAR"};
         modificarPanel(panelReportes);
         agregarBotones(panelReportes, botonesReportes, titulos, 20, 300, 120, 20);
+        crearListaJugadores();
         establecerAreasTexto();       
     }
     
@@ -65,7 +69,7 @@ public class Reportes extends Menus{
                 switch(i){
                     case 0:
                         System.out.println("VEHICULOS");      
-                        reiniciarAreaTextoVehiculos(0);
+                        reiniciarAreaTextoVehiculos(listaJugadores.getSelectedIndex());
                         break;
                     case 1:
                         System.out.println("BATALLAS");                        
@@ -92,17 +96,26 @@ public class Reportes extends Menus{
         };        
         boton.addActionListener(accion);
     }
-    
+    private void crearListaJugadores(){
+        listaJugadores = new JComboBox();
+        for(int i = 0; i < menus.datos.getSizeListaJugadores(); i++){
+            listaJugadores.addItem(menus.datos.getNombreJugador(i));
+        }
+        listaJugadores.setBackground(Color.DARK_GRAY);
+        listaJugadores.setForeground(Color.CYAN);
+        listaJugadores.setBounds(20, 275, 120, 20);
+        panelReportes.add(listaJugadores);
+    }
     /**
      * rediseña el JTextArea "areaTexto", donde "x" es la posición que tendrá en el eje horizontal y "y" en el eje vertical
      * @param areaTexto
      * @param x
      * @param y 
      */
-    public void modificarAreaTexto(JTextArea areaTexto, int x, int y){        
+    public void modificarAreaTexto(JTextArea areaTexto, int x, int y){ 
         areaTexto.setBackground(Color.DARK_GRAY);
         areaTexto.setForeground(Color.CYAN);
-        areaTexto.setBounds(x, y, 120, 200);
+        areaTexto.setBounds(x, y, 120, 200);        
         panelReportes.add(areaTexto);
     
     }
@@ -110,7 +123,7 @@ public class Reportes extends Menus{
      * Coloca las diversas Areas de texto que se usarán en los Reportes
      */
     public void establecerAreasTexto(){
-        modificarAreaTexto(areaTextoVehiculos, 160, 20);
+        modificarAreaTexto(areaTextoVehiculos, 160, 20);         
         modificarAreaTexto(areaTextoTipoVehiculos, 280, 20);
     }
     
@@ -119,11 +132,13 @@ public class Reportes extends Menus{
      * @param idJugador 
      */
     public void reiniciarAreaTextoVehiculos(int idJugador){        
-        areaTextoVehiculos.setText(null);
-        areaTextoTipoVehiculos.setText(null);
+        areaTextoVehiculos.setText(null); areaTextoVehiculos.append("VEHICULOS\n");
+        areaTextoTipoVehiculos.setText(null); areaTextoTipoVehiculos.append("TIPO DE VEHICULOS\n");
         for(int i = 0; i < menus.datos.getSizeNombreVehiculos(idJugador); i++){
-            areaTextoVehiculos.append(menus.datos.getNombreVehiculo(idJugador, i)+"\n");
-            areaTextoTipoVehiculos.append(menus.datos.getTipoVehiculo(idJugador, i)+"\n");
+            areaTextoVehiculos.append(menus.datos.getNombreVehiculo(listaJugadores.getSelectedIndex(), i)+"\n");
+            areaTextoTipoVehiculos.append(menus.datos.getTipoVehiculo(listaJugadores.getSelectedIndex(), i)+"\n");
         }
     }
+    
+    
 }
