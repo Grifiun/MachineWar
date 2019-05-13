@@ -26,8 +26,6 @@ public class Moverse extends Thread{
      * Constructor de la clase Moverse, nombre es el nombre del proceso, escenarios es la copia del Heap de la clase Escenarios, x e y son las pociones iniciales, direccion es la dir a mover
      * @param nombre
      * @param escenarios
-     * @param x
-     * @param y
      * @param vehiculo
      * @param direccion 
      */
@@ -58,11 +56,7 @@ public class Moverse extends Thread{
     } 
     /**
      * Metodo recursivo para mover al vehiculo
-     * @param x
-     * @param y
-     * @param vehiculo
-     * @param direccion
-     * @param casillasAMover 
+     * 
      */
     public void revisarRellenarCasillas(){       
         pause(500); System.out.println("vuelta: "+ i);       

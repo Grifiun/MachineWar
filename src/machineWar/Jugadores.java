@@ -39,7 +39,7 @@ public class Jugadores implements Serializable{
     }
     /**
      * Obtiene el nombre del vehículo numero "numVehiculo" del jugador "idJugador"
-     * @param idJugador
+     * 
      * @param numVehiculo
      * @return 
      */
@@ -48,8 +48,7 @@ public class Jugadores implements Serializable{
     }
     
     /**
-     * Obtiene el tipo del vehículo numero "numVehiculo" del jugador "idJugador"
-     * @param idJugador
+     * Obtiene el tipo del vehículo numero "numVehiculo" del jugador "idJugador"     * 
      * @param numVehiculo
      * @return 
      */
@@ -59,7 +58,6 @@ public class Jugadores implements Serializable{
     
     /**
      * Obtiene la cantidad de vehiculos que posee el jugador "idJugador"
-     * @param idJugador
      * @return 
      */
     public int getSizeNombreVehiculos(){ 

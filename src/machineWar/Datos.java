@@ -21,6 +21,48 @@ public class Datos {
     private ObjectInputStream flujoObjetosEntrada;
     protected ArrayList<Armas> armas = new ArrayList();
     protected ArrayList<ArmasAviones> armasAviones = new ArrayList();
+    
+    public void guardarDatosHTML(){
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("datos.html");
+            pw = new PrintWriter(fichero);
+            pw.println("<!DOCTYPE html>\n<html>\n<head>\n" + "<meta charset=\"utf-8\">" +
+                    "\n<title>REPORTES</title>\n</head>\n<body>\n<table class=\"egt\">");
+            for (int i = 0; i < listaJugadores.size(); i++){
+                
+                for(int j = 0; j < listaJugadores.get(j).getSizeNombreVehiculos(); j++){
+                    if(j == 0)
+                    pw.println("<tr>\n<th>  JUGADOR  </th>\n<th>  NOMBRE  </th>\n<th> TIPO    </th>\n<th> ESTADO  </th>\n<th> NIVEL   </th>\n<th> ENEMIGOS DER.   </th>\n<th> DESTRUCCIONES   </th>\n</tr>");
+                    pw.println("\n<tr>");
+                    pw.println("\n<td>  " + listaJugadores.get(i).getNombre() + "  </td>");
+                    pw.println("\n<td>  " + listaJugadores.get(i).getNombreVehiculo(j) + "  </td>");
+                    pw.println("\n<td>  " + listaJugadores.get(i).getTipoVehiculo(j) + "    </td>");
+                    pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).isEstado() + "   </td>");
+                    pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).getNivel() + "   </td>");
+                    pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).getEnemigosDerrotados() + "  </td>");
+                    pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).getVecesDestruido() + "  </td>");
+                    pw.println("\n</tr>");
+                }
+                
+            }
+            pw.println("\n</table>\n</body>\n</html>");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           //Cerramos los archivos
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+        
+    }
+    
     /**
      * Se encarga de guardar Datos
      */

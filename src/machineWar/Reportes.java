@@ -90,6 +90,7 @@ public class Reportes extends Menus{
                     case 4:
                         System.out.println("EXPORTAR");    
                         menus.datos.guardarDatos();
+                        menus.datos.guardarDatosHTML();
                         break;                       
                     case 5:
                         System.out.println("REGRESAR");
