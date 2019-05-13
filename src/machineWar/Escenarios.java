@@ -106,6 +106,14 @@ public class Escenarios extends Menus{
         establecerVehiculo(tamanoX - 1, tamanoY - 1, "AvionE");
         else
         establecerVehiculo(tamanoX - 1, tamanoY - 1, "TanqueE");
+        if(getEstadoBotonesEscenario(tamanoX - 2, tamanoY - 2) == "AGUA")
+        establecerVehiculo(tamanoX - 2, tamanoY - 2, "AvionE");
+        else
+        establecerVehiculo(tamanoX - 2, tamanoY - 2, "TanqueE");
+        if(getEstadoBotonesEscenario(tamanoX - 3, tamanoY - 3) == "AGUA")
+        establecerVehiculo(tamanoX - 3, tamanoY - 3, "AvionE");
+        else
+        establecerVehiculo(tamanoX - 3, tamanoY - 3, "TanqueE");
         
     }
     /**
