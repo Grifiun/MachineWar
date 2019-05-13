@@ -128,4 +128,10 @@ public class Datos {
         aux = listaJugadores.get(idJugador);
         return aux.getSizeNombreVehiculos();
     }
+
+    public ArrayList<Jugadores> getListaJugadores() {
+        return listaJugadores;
+    }
+    
+    
 }

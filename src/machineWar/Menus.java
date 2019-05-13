@@ -13,7 +13,8 @@ public class Menus extends JFrame{
     protected Jugar jugar;
     protected PVP pvp;
     protected Reportes reportes;   
-    protected Partida partida;
+    protected Partida partida;// = new Partida(menus)
+    private int idJug1, idJug2;;
     protected Datos datos = new Datos();
     protected JPanel panelMP = new JPanel();      
     private String titulos[] = {"JUGAR", "PVP", "REPORTES", "SALIR"};    
@@ -28,8 +29,7 @@ public class Menus extends JFrame{
         this.setLocationRelativeTo(null);// Centrar ventana al centro          
         agregarComponentes(panelMP, botonesMP, titulos);
         agregarVentana(panelMP);
-        datos.cargarDatos();
-        //datos.cargarDatos();
+        datos.cargarDatos();   
     }
     
     /**
@@ -191,5 +191,26 @@ public class Menus extends JFrame{
     public void setMenus(Menus menus) {
         this.menus = menus;
     }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+    
+    public void setIdJug1(int idJug1) {
+        this.idJug1 = idJug1;
+    }
+
+    public void setIdJug2(int idJug2) {
+        this.idJug2 = idJug2;
+    }
+
+    public int getIdJug1() {
+        return idJug1;
+    }
+
+    public int getIdJug2() {
+        return idJug2;
+    }
+    
     
 }

@@ -54,7 +54,7 @@ public class TipoBatallas extends Menus{
                         
                         break;  
                     case 2:                        
-                        
+                        menus.partida.panelPartida.setVisible(true);
                         break; 
                 }
             }

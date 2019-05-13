@@ -36,9 +36,9 @@ public class Moverse extends Thread{
         this.escenarios = escenarios;      
         this.vehiculo = vehiculo;
         this.direccion = direccion;
-        if(vehiculo == "TANQUE")
+        if(vehiculo == "TANQUE" || vehiculo == "Tanque")
             this.restriccionVehiculo = "AGUA";
-        if(vehiculo == "AVION")
+        if(vehiculo == "AVION" || vehiculo == "Avion")
             this.restriccionVehiculo = "MONTANA";
         casillasAMover = rand.nextInt(3) + 1; rand.setSeed(System.currentTimeMillis());
     }    

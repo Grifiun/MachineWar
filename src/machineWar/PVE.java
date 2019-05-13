@@ -27,7 +27,7 @@ public class PVE extends Menus{
      * Metodo principal de la clase PVE, se encarga de crear los botones necesarios
      */
     public void pve (){        
-        String[] titulos = {"ESCE. 1", "ESCE. 2", "ESCE. 3"};
+        String[] titulos = {"ESCE. 1", "ESCE. 2", "ESCE. 3", "REGRESAR"};
         setTitulos(titulos);       
         agregarComponentes(panelPVE, botonesPVE, titulos);
     }
@@ -61,8 +61,10 @@ public class PVE extends Menus{
                         break;
                     case 3:
                         System.out.println("REGRESAR");
+                        menus.partida.panelPartida.setVisible(true);
                         break;
                 }
+                if(i != 3)
                 escenarios.setEscenarios(escenarios);
             }
         };        

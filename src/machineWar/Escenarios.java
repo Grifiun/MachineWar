@@ -14,12 +14,14 @@ public class Escenarios extends Menus{
     protected JPanel panelEscenarios = new JPanel();
     private JButton[][] botonesEscenario;
     private String[][] estadoBotonesEscenario;
-    private JButton[] botonesOpcionesJugador = new JButton[8];
+    private JButton[] botonesOpcionesJugador = new JButton[5];  
+    private int vehiculoElegido = 0;
     private ImageIcon tanque = new ImageIcon("tanque.png"), avion = new ImageIcon("avion.png"), tanqueE = new ImageIcon("tanqueE.png"), avionE = new ImageIcon("avionE.png");
     private int tamanoX, tamanoY;
     protected int posX = 0, posY = 0;
     protected PVE pve;
     private Random rand = new Random(System.currentTimeMillis());
+    private JComboBox listaElegirVehiculos, listaDireccion;
     /**
      * Constructor, crea una copia del heap de Menus
      * @param menus 
@@ -37,11 +39,13 @@ public class Escenarios extends Menus{
      * Metodo principal de Escenarios       
      */
     public void escenarios(){
-        String[] titulos = {"MOV. ARRIBA", "MOV. ABAJO", "MOV. IZQUIERDA", "MOV. DERECHA", "ATACAR", "CAMBIAR V.", "ITEMS", "RENDIRSE"};
+        String[] titulos = {"MOVER", "ATACAR", "CAMBIAR V.", "ITEMS", "RENDIRSE"};
         menus.agregarVentana(panelEscenarios);
         modificarPanel(panelEscenarios);
         crearBotonesTipoEscenario();
         agregarBotones(panelEscenarios, botonesOpcionesJugador, titulos, 650, 140, 120, 20);
+        crearListaDireccion();
+        crearListaElegirVehiculos();
     }
     
     /**
@@ -95,7 +99,7 @@ public class Escenarios extends Menus{
             }
         }
         colocarTipoTerreno(0, 0, 0);
-        establecerVehiculo(posX, posY, "TANQUE");
+        establecerVehiculo(posX, posY, menus.datos.getListaJugadores().get(menus.getIdJug1()).getTipoVehiculo(0));        
     }
     /**
      * Sobre escribimos la accion del boton i
@@ -109,35 +113,33 @@ public class Escenarios extends Menus{
             public void actionPerformed(ActionEvent e) {
                 
                 switch(i){
-                    case 0:
-                        moverse = new Moverse("proceso", escenarios, "TANQUE", "ARRIBA");
+                    case 0: 
+                        String dir;
+                        dir = (String) listaDireccion.getSelectedItem();
+                        
+                        moverse = new Moverse("proceso", escenarios, menus.datos.getTipoVehiculo(menus.getIdJug1(), listaElegirVehiculos.getSelectedIndex()), dir);
                         moverse.run();
                         break;
                     case 1:                
-                        moverse = new Moverse("proceso", escenarios, "TANQUE", "ABAJO");
-                        moverse.run();
+                       
                         break;
                     case 2:
-                        moverse = new Moverse("proceso", escenarios, "TANQUE", "DERECHA");
-                        moverse.run();
+                        System.out.println("CambiarV");
+                        if(listaElegirVehiculos.isVisible() == false)
+                        listaElegirVehiculos.setVisible(true);
+                        else{
+                            establecerVehiculo(posX, posY, "");
+                            establecerVehiculo(posX, posY, menus.datos.getTipoVehiculo(menus.getIdJug1(), listaElegirVehiculos.getSelectedIndex()));
+                            listaElegirVehiculos.setVisible(false);
+                        }                        
                         break;
                     case 3:                
-                        moverse = new Moverse("proceso", escenarios, "TANQUE", "IZQUIERDA");
-                        moverse.run();
+                        
                         break;
                     case 4:                
-                        
-                        break;
-                    case 5:
-                        
-                        break;
-                    case 6:                
-                        
-                        break;
-                    case 7:
                         panelEscenarios.setVisible(false);
                         pve.panelPVE.setVisible(true);
-                        break;
+                        break;                     
                 }
             }
         };                            
@@ -151,16 +153,16 @@ public class Escenarios extends Menus{
      */
     public void establecerVehiculo(int x, int y, String tipoVehiculo){
         switch(tipoVehiculo){
-            case "TANQUE":
+            case "Tanque":
                 botonesEscenario[x][y].setIcon(new ImageIcon(tanque.getImage().getScaledInstance(botonesEscenario[0][0].getHeight(), botonesEscenario[0][0].getHeight(), Image.SCALE_SMOOTH)));
                 break;
-            case "AVION":
+            case "Avion":
                 botonesEscenario[x][y].setIcon(new ImageIcon(avion.getImage().getScaledInstance(botonesEscenario[0][0].getHeight(), botonesEscenario[0][0].getHeight(), Image.SCALE_SMOOTH)));
                 break;
-            case "TANQUEE":
+            case "TanqueE":
                 botonesEscenario[x][y].setIcon(new ImageIcon(tanqueE.getImage().getScaledInstance(botonesEscenario[0][0].getHeight(), botonesEscenario[0][0].getHeight(), Image.SCALE_SMOOTH)));
                 break;
-            case "AVIONE":
+            case "AvionE":
                 botonesEscenario[x][y].setIcon(new ImageIcon(avionE.getImage().getScaledInstance(botonesEscenario[0][0].getHeight(), botonesEscenario[0][0].getHeight(), Image.SCALE_SMOOTH)));
                 break;
             case "":
@@ -202,5 +204,34 @@ public class Escenarios extends Menus{
     public void setEscenarios(Escenarios escenarios) {
         this.escenarios = escenarios;
     }
+
+    public void setVehiculoElegido(int vehiculoElegido) {
+        this.vehiculoElegido = vehiculoElegido;
+    }
+    
+    private void crearListaElegirVehiculos(){
+        listaElegirVehiculos = new JComboBox();
+        listaElegirVehiculos.setBackground(Color.DARK_GRAY);
+        listaElegirVehiculos.setForeground(Color.CYAN);
+        listaElegirVehiculos.setBounds(650, 285, 120, 20);
+        panelEscenarios.add(listaElegirVehiculos);
+        for(int i = 0; i < menus.datos.getSizeNombreVehiculos(menus.getIdJug1()); i++){
+            listaElegirVehiculos.addItem(menus.datos.getNombreVehiculo(menus.getIdJug1(), i));
+        }
+        listaElegirVehiculos.setVisible(false);        
+       
+    }
+     private void crearListaDireccion(){
+         listaDireccion = new JComboBox();
+         listaDireccion.setBackground(Color.DARK_GRAY);
+         listaDireccion.setForeground(Color.CYAN);
+         listaDireccion.setBounds(650, 260, 120, 20);
+         panelEscenarios.add(listaDireccion);
+        
+         listaDireccion.addItem("ARRIBA");
+         listaDireccion.addItem("ABAJO");
+         listaDireccion.addItem("DERECHA");
+         listaDireccion.addItem("IZQUIERDA");  
+     }
     
 }

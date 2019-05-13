@@ -18,7 +18,7 @@ import javax.swing.*;
  */
 public class CrearJugadores extends Menus{
     protected JPanel panelCrearJugadores = new JPanel();
-    private JButton[] botonesCrearJugadores = new JButton[4];
+    private JButton[] botonesCrearJugadores = new JButton[3];
     private JButton finalizarCreacion;
     private JTextField cajaTexto;
     protected JLabel mensaje = new JLabel("NOMBRE JUGADOR");    
@@ -36,7 +36,7 @@ public class CrearJugadores extends Menus{
      * Creacion de "botonesCrearJugadores"
      */
     public void crearJugadores(){
-        String[] titulos = {"TANQUE", "AVION", "USUARIO", "FINALIZAR"};        
+        String[] titulos = {"TANQUE", "AVION", "USUARIO"};        
         agregarComponentes(panelCrearJugadores, botonesCrearJugadores, titulos);
         crearCajaTexto();
         crearMensaje();        
@@ -64,17 +64,18 @@ public class CrearJugadores extends Menus{
                     case 2:                            
                             System.out.println("USUARIO CREADO");
                             menus.datos.addJugador(cajaTexto.getText()); 
-                            
-                        break;
-                    case 3:
-                            panelCrearJugadores.setVisible(false);
-                            partida = new Partida(menus);                            
-                            partida.partida();
-                        
-                        break;
+                            menus.setIdJug1(menus.datos.getSizeListaJugadores() - 1);
+                        break;                           
+                       
                 }
                 cajaTexto.setText("");
                 mensaje.setText("NOMBRE VEHICULO "+ (vehiculosCreados + 1));
+                if(vehiculosCreados >= 3){
+                            panelCrearJugadores.setVisible(false);
+                            partida = new Partida(menus);
+                            menus.setPartida(partida);
+                            partida.partida();
+                }
             }
         };                            
         boton.addActionListener(accion);
