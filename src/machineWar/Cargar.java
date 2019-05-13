@@ -42,7 +42,9 @@ public class Cargar extends Menus{
                 switch(i){
                     case 0:
                         System.out.println("CARGAR P."); 
-                        
+                        menus.setIdJug1(listaJugadores.getSelectedIndex());
+                        menus.partida = new Partida(menus);                       
+                        menus.partida.partida();
                         break;
                     case 1:
                         /*partida = new Partida(menus);                            

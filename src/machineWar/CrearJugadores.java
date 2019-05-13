@@ -19,9 +19,8 @@ import javax.swing.*;
 public class CrearJugadores extends Menus{
     protected JPanel panelCrearJugadores = new JPanel();
     private JButton[] botonesCrearJugadores = new JButton[3];
-    private JButton finalizarCreacion;
     private JTextField cajaTexto;
-    protected JLabel mensaje = new JLabel("NOMBRE JUGADOR");    
+    private JLabel mensaje = new JLabel("NOMBRE JUGADOR");    
     
     private int vehiculosCreados = 0;
     /**
@@ -75,6 +74,7 @@ public class CrearJugadores extends Menus{
                             partida = new Partida(menus);
                             menus.setPartida(partida);
                             partida.partida();
+                            menus.datos.guardarDatos();
                 }
             }
         };                            

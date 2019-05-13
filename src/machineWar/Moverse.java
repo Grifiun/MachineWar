@@ -46,8 +46,9 @@ public class Moverse extends Thread{
      * Sobre escritura de run()
      */
     @Override
-    public void run(){            
-            revisarRellenarCasillas(casillasAMover); //casiiasAMover 
+    public void run(){
+            revisarRellenarCasillas(); //casiiasAMover 
+           
             /*
             System.out.println("    "+escenarios.getTamanoY()+" - "+ casillasAMover+ " = "+(escenarios.getTamanoY() - casillasAMover));
             System.out.println("    "+escenarios.getTamanoY()+" + "+ casillasAMover+ " = "+(escenarios.getTamanoY() + casillasAMover));
@@ -63,11 +64,11 @@ public class Moverse extends Thread{
      * @param direccion
      * @param casillasAMover 
      */
-    public void revisarRellenarCasillas(int casillasAMover){       
-        pause(500);        
-        if(direccion == "ARRIBA"){ // Arriba
+    public void revisarRellenarCasillas(){       
+        pause(500); System.out.println("vuelta: "+ i);       
+        if(direccion == "ARRIBA"){ // Arriba            
             cambiarDeCasilla(escenarios.posX, escenarios.posY, "");
-            escenarios.posY--;
+            escenarios.posY--; 
             cambiarDeCasilla(escenarios.posX, escenarios.posY, vehiculo);
         }
         if(direccion == "ABAJO"){ // Abajo          
@@ -77,19 +78,18 @@ public class Moverse extends Thread{
         }
         if(direccion == "IZQUIERDA"){// Izquierda
             cambiarDeCasilla(escenarios.posX, escenarios.posY, "");
-            escenarios.posX++;
-            cambiarDeCasilla(escenarios.posX, escenarios.posY, vehiculo);
-        }
-        if(direccion == "DERECHA"){// Derecha          
-            cambiarDeCasilla(escenarios.posX, escenarios.posY, "");
             escenarios.posX--;
             cambiarDeCasilla(escenarios.posX, escenarios.posY, vehiculo);
-                        
+        }
+        if(direccion == "DERECHA"){// Derecha 
+            cambiarDeCasilla(escenarios.posX, escenarios.posY, "");
+            escenarios.posX++;
+            cambiarDeCasilla(escenarios.posX, escenarios.posY, vehiculo);                                 
         } 
         
         if(i < casillasAMover){
-            i++;
-            revisarRellenarCasillas(casillasAMover);               
+            i++;            
+            revisarRellenarCasillas();               
         } 
     }
     
@@ -99,14 +99,8 @@ public class Moverse extends Thread{
      * @param y
      * @param estado 
      */
-    public void cambiarDeCasilla(int x, int y, String estado){
-        if(estado != null){           
-            escenarios.establecerVehiculo(x, y, estado);            
-        }        
-        else{            
-                              
-        }
-        
+    public void cambiarDeCasilla(int x, int y, String estado){                    
+            escenarios.establecerVehiculo(x, y, estado);  
     } 
     /**
      * Metodo encargado de pause

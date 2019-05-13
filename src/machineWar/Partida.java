@@ -43,8 +43,9 @@ public class Partida extends Menus{
                     case 1:                        
                         //JOptionPane.showMessageDialog(null, "MENSAJE");
                         break;  
-                    case 2:                        
-                        reportes = new Reportes(menus, menus.jugar.nuevo.crearJugadores.partida);
+                    case 2:   
+                        reportes = null;
+                        reportes = new Reportes(menus, menus.partida);
                         reportes.reportes();
                         break; 
                     case 3:                        

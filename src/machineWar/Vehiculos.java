@@ -16,8 +16,10 @@ public class Vehiculos implements Serializable{
     private boolean estado;
     private int expRequerido;
     private String tipoVehiculo;
-    private List<List<String>> enemigosDerrotados = new ArrayList<>();
-    private List<List<String>> vecesDestruido = new ArrayList<>();
+    private ArrayList<String> enemigosDerrotados = new ArrayList();
+    private ArrayList<String> vecesDestruido = new ArrayList();
+    private ArrayList<String> EscenarioEnemigosDerrotados = new ArrayList();
+    private ArrayList<String> EscenarioVecesDestruido = new ArrayList();
     /**
      * Construcr de la clase vehiculos, recibe el nombre del vehiculo a crear y creo un vehiculo con stats iniciales
      * @param nombreVehiculo 

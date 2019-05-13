@@ -21,6 +21,12 @@ public class Reportes extends Menus{
     protected JPanel panelReportes = new JPanel();
     private JTextArea areaTextoVehiculos = new JTextArea();
     private JTextArea areaTextoTipoVehiculos = new JTextArea();
+    private JTextArea areaTextoEstadoVehiculos = new JTextArea();
+    private JTextArea areaTextoNivelVehiculos = new JTextArea();
+    private JTextArea areaTextoEnemigosDerrotados = new JTextArea();
+    private JTextArea areaTextoEscenarioEnemigosDerrotados = new JTextArea();
+    private JTextArea areaTextoVecesDestruido = new JTextArea();
+    private JTextArea areaTextoEscenarioDestruido = new JTextArea();
     private JComboBox listaJugadores;
     private Partida partida;
     private boolean mostrarPanelMP = true;

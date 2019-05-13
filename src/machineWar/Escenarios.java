@@ -9,7 +9,7 @@ import java.util.Random;
 import javax.swing.*;
 
 public class Escenarios extends Menus{
-    protected Moverse moverse;
+    protected Moverse moverse, moverBala;
     protected Escenarios escenarios;
     protected JPanel panelEscenarios = new JPanel();
     private JButton[][] botonesEscenario;
@@ -22,6 +22,8 @@ public class Escenarios extends Menus{
     protected PVE pve;
     private Random rand = new Random(System.currentTimeMillis());
     private JComboBox listaElegirVehiculos, listaDireccion;
+    private int dirBala;
+    
     /**
      * Constructor, crea una copia del heap de Menus
      * @param menus 
@@ -99,7 +101,12 @@ public class Escenarios extends Menus{
             }
         }
         colocarTipoTerreno(0, 0, 0);
-        establecerVehiculo(posX, posY, menus.datos.getListaJugadores().get(menus.getIdJug1()).getTipoVehiculo(0));        
+        establecerVehiculo(posX, posY, menus.datos.getListaJugadores().get(menus.getIdJug1()).getTipoVehiculo(0));
+        if(getEstadoBotonesEscenario(tamanoX - 1, tamanoY - 1) == "AGUA")
+        establecerVehiculo(tamanoX - 1, tamanoY - 1, "AvionE");
+        else
+        establecerVehiculo(tamanoX - 1, tamanoY - 1, "TanqueE");
+        
     }
     /**
      * Sobre escribimos la accion del boton i
@@ -115,10 +122,11 @@ public class Escenarios extends Menus{
                 switch(i){
                     case 0: 
                         String dir;
-                        dir = (String) listaDireccion.getSelectedItem();
-                        
+                        dir = (String) listaDireccion.getSelectedItem();                        
                         moverse = new Moverse("proceso", escenarios, menus.datos.getTipoVehiculo(menus.getIdJug1(), listaElegirVehiculos.getSelectedIndex()), dir);
                         moverse.run();
+                        
+                        moverse.pause(700);
                         break;
                     case 1:                
                        
@@ -152,6 +160,7 @@ public class Escenarios extends Menus{
      * @param tipoVehiculo 
      */
     public void establecerVehiculo(int x, int y, String tipoVehiculo){
+        
         switch(tipoVehiculo){
             case "Tanque":
                 botonesEscenario[x][y].setIcon(new ImageIcon(tanque.getImage().getScaledInstance(botonesEscenario[0][0].getHeight(), botonesEscenario[0][0].getHeight(), Image.SCALE_SMOOTH)));
@@ -197,7 +206,7 @@ public class Escenarios extends Menus{
      * @param y
      * @return 
      */
-    public String getEstadpBotonesEscenario(int x, int y){
+    public String getEstadoBotonesEscenario(int x, int y){
         return estadoBotonesEscenario[x][y];
     }
 
@@ -233,5 +242,6 @@ public class Escenarios extends Menus{
          listaDireccion.addItem("DERECHA");
          listaDireccion.addItem("IZQUIERDA");  
      }
+    
     
 }
