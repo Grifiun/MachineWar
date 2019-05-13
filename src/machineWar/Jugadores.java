@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class Jugadores implements Serializable{
     private String nombre;
+    protected int oro = 0;
     protected List<Vehiculos> vehiculos = new ArrayList();
 
     public Jugadores(String nombre) {

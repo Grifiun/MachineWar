@@ -52,29 +52,42 @@ public class CrearJugadores extends Menus{
             public void actionPerformed(ActionEvent e) {
                 
                 switch(i){
-                    case 0:                             
-                            menus.datos.agregarVehiculo("Tanque", cajaTexto.getText(), menus.datos.getSizeListaJugadores() - 1);
-                            vehiculosCreados++;                        
+                    case 0: 
+                            
+                            if(mensaje.getText() == "NOMBRE JUGADOR")
+                                JOptionPane.showMessageDialog(null, "INGRESA PRIMERO EL NOMBRE DEL JUGADOR");
+                            else{
+                                menus.datos.agregarVehiculo("Tanque", cajaTexto.getText(), menus.datos.getSizeListaJugadores() - 1);
+                                vehiculosCreados++;             
+                            }           
                         break;
                     case 1:                             
-                            menus.datos.agregarVehiculo("Avion", cajaTexto.getText(), menus.datos.getSizeListaJugadores() - 1);
-                            vehiculosCreados++;  
+                            if(mensaje.getText() == "NOMBRE JUGADOR")
+                                JOptionPane.showMessageDialog(null, "INGRESA PRIMERO EL NOMBRE DEL JUGADOR");
+                            else{
+                                menus.datos.agregarVehiculo("Avion", cajaTexto.getText(), menus.datos.getSizeListaJugadores() - 1);
+                                vehiculosCreados++;  
+                            }
                         break;
                     case 2:                            
                             System.out.println("USUARIO CREADO");
                             menus.datos.addJugador(cajaTexto.getText()); 
                             menus.setIdJug1(menus.datos.getSizeListaJugadores() - 1);
+                            mensaje.setText("xD");
                         break;                           
                        
                 }
-                cajaTexto.setText("");
-                mensaje.setText("NOMBRE VEHICULO "+ (vehiculosCreados + 1));
-                if(vehiculosCreados >= 3){
-                            panelCrearJugadores.setVisible(false);
-                            menus.partida = new Partida(menus);                           
-                            menus.partida.partida();
-                            menus.datos.guardarDatos();
+                if(mensaje.getText() != "NOMBRE JUGADOR"){
+                    cajaTexto.setText("");
+                    mensaje.setText("NOMBRE VEHICULO "+ (vehiculosCreados + 1));
+                    if(vehiculosCreados >= 3){
+                                panelCrearJugadores.setVisible(false);
+                                menus.partida = new Partida(menus);                           
+                                menus.partida.partida();
+                                menus.datos.guardarDatos();
+                    }
                 }
+                
             }
         };                            
         boton.addActionListener(accion);

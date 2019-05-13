@@ -9,6 +9,7 @@ public class Partida extends Menus{
     protected JPanel panelPartida = new JPanel();
     private JButton[] botonesPartida = new JButton[4];
     protected TipoBatallas tipoBatallas;
+    protected Tienda tienda;
     /**
      * Constructor de la clase Partida
      * @param menus 
@@ -42,7 +43,9 @@ public class Partida extends Menus{
                         tipoBatallas.tipoBatllas();
                         break;
                     case 1:                        
-                        //JOptionPane.showMessageDialog(null, "MENSAJE");
+                        
+                        tienda = new Tienda(menus);
+                        tienda.tienda();
                         break;  
                     case 2:   
                         reportes = null;

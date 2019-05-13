@@ -19,6 +19,8 @@ public class Datos {
     private File datosJugadores = new File("datosJugadores");
     private ObjectOutputStream flujoObjetosSalida;
     private ObjectInputStream flujoObjetosEntrada;
+    protected ArrayList<Armas> armas = new ArrayList();
+    protected ArrayList<ArmasAviones> armasAviones = new ArrayList();
     /**
      * Se encarga de guardar Datos
      */
@@ -132,6 +134,22 @@ public class Datos {
     public ArrayList<Jugadores> getListaJugadores() {
         return listaJugadores;
     }
+
+    public Armas getArmas(int i, int tipo) {
+        if(tipo == 0)
+            return armas.get(i);
+        if(tipo == 1)
+            return armasAviones.get(i);
+        return null;
+    }
+
+    public void addArmas(int dano, int punt) {
+        Armas aux = new Armas(dano, punt);        
+        this.armas.add(aux);
+    }
     
-    
+    public void addArmas(int dano, int punt, double vel) {
+        ArmasAviones aux = new ArmasAviones(vel, dano, punt);        
+        this.armasAviones.add(aux);
+    }
 }
