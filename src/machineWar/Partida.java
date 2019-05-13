@@ -23,6 +23,7 @@ public class Partida extends Menus{
     public void partida(){
         String[] titulos = {"BATALLA", "TIENDA", "REPORTES", "SALIR"};        
         agregarComponentes(panelPartida, botonesPartida, titulos);         
+        menus.datos.guardarDatos();
     }
     /**
      * Sobre-escritura de las acciones que tendrán los botones generados anteriormente

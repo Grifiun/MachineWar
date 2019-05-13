@@ -71,9 +71,8 @@ public class CrearJugadores extends Menus{
                 mensaje.setText("NOMBRE VEHICULO "+ (vehiculosCreados + 1));
                 if(vehiculosCreados >= 3){
                             panelCrearJugadores.setVisible(false);
-                            partida = new Partida(menus);
-                            menus.setPartida(partida);
-                            partida.partida();
+                            menus.partida = new Partida(menus);                           
+                            menus.partida.partida();
                             menus.datos.guardarDatos();
                 }
             }

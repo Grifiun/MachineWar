@@ -27,6 +27,7 @@ public class Cargar extends Menus{
         setTitulos(titulos);       
         agregarComponentes(panelCargar, botonesCargar, titulos);
         crearListaJugadores();
+        menus.datos.cargarDatos();
     }
     /**
      * Sobre escribe las acciones que tendrán los botones

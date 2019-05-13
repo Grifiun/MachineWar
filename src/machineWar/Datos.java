@@ -91,7 +91,7 @@ public class Datos {
      * @return 
      */
     public String getNombreJugador(int idJugador){
-        return listaJugadores.get(idJugador).getNombre();
+        return listaJugadores.get(idJugador).getNombre(); 
     }
     
     /**

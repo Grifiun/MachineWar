@@ -16,10 +16,8 @@ public class Vehiculos implements Serializable{
     private boolean estado;
     private int expRequerido;
     private String tipoVehiculo;
-    private ArrayList<String> enemigosDerrotados = new ArrayList();
-    private ArrayList<String> vecesDestruido = new ArrayList();
-    private ArrayList<String> EscenarioEnemigosDerrotados = new ArrayList();
-    private ArrayList<String> EscenarioVecesDestruido = new ArrayList();
+    private ArrayList<String> escenarioEnemigosDerrotados = new ArrayList();
+    private ArrayList<String> escenarioVecesDestruido = new ArrayList();
     /**
      * Construcr de la clase vehiculos, recibe el nombre del vehiculo a crear y creo un vehiculo con stats iniciales
      * @param nombreVehiculo 
@@ -199,14 +197,14 @@ public class Vehiculos implements Serializable{
      * @return 
      */
     public int getEnemigosDerrotados() {
-        return enemigosDerrotados.size();
+        return escenarioEnemigosDerrotados.size();
     }
     /**
      * Retorna la cantidad de veces que el vehiculo ah sido destruido
      * @return 
      */
     public int getVecesDestruido() {
-        return vecesDestruido.size();
+        return escenarioVecesDestruido.size();
     }
     /**
      * Retorna el tipo de vehiculo
@@ -214,6 +212,28 @@ public class Vehiculos implements Serializable{
      */
     public String getTipoVehiculo() {
         return tipoVehiculo;
+    }
+
+    public void addEnemigosDerrotados(String escenario) {
+        this.escenarioEnemigosDerrotados.add(escenario);
+    }
+
+    public void addVecesDestruido(String escenario){
+        this.escenarioVecesDestruido.add(escenario);
+    }
+
+    public String getEscenarioEnemigosDerrotados(int i) {
+        if(escenarioEnemigosDerrotados.size() == 0)
+            return "-----";
+        else
+        return escenarioEnemigosDerrotados.get(i);
+    }
+
+    public String getEscenarioVecesDestruido(int i) {
+        if(escenarioVecesDestruido.size() == 0)
+            return "------";
+        else
+        return escenarioVecesDestruido.get(i);
     }
     
     

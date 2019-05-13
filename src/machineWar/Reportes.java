@@ -38,7 +38,7 @@ public class Reportes extends Menus{
     public Reportes(Menus menus){
         setMenus(menus);
         menus.agregarVentana(panelReportes);
-        
+        menus.datos.cargarDatos();
     }
     /**
      * Sobre escritura del constructor de la clase Reportes, se encarga de hacer una copia del heap de la clase Menus
@@ -60,6 +60,7 @@ public class Reportes extends Menus{
         agregarBotones(panelReportes, botonesReportes, titulos, 20, 300, 120, 20);
         crearListaJugadores();
         establecerAreasTexto();       
+        
     }
     
     /**
@@ -75,7 +76,7 @@ public class Reportes extends Menus{
                 switch(i){
                     case 0:
                         System.out.println("VEHICULOS");      
-                        reiniciarAreaTextoVehiculos(listaJugadores.getSelectedIndex());
+                        reiniciarAreaTexto(listaJugadores.getSelectedIndex());
                         break;
                     case 1:
                         System.out.println("BATALLAS");                        
@@ -87,7 +88,8 @@ public class Reportes extends Menus{
                         System.out.println("PEOR V.");                        
                         break;
                     case 4:
-                        System.out.println("EXPORTAR");                        
+                        System.out.println("EXPORTAR");    
+                        menus.datos.guardarDatos();
                         break;                       
                     case 5:
                         System.out.println("REGRESAR");
@@ -129,20 +131,45 @@ public class Reportes extends Menus{
      * Coloca las diversas Areas de texto que se usarán en los Reportes
      */
     public void establecerAreasTexto(){
-        modificarAreaTexto(areaTextoVehiculos, 160, 20);         
-        modificarAreaTexto(areaTextoTipoVehiculos, 280, 20);
+        modificarAreaTexto(areaTextoVehiculos, 160, 40);         
+        modificarAreaTexto(areaTextoTipoVehiculos, 280, 40);
+        modificarAreaTexto(areaTextoEstadoVehiculos, 400, 40);         
+        modificarAreaTexto(areaTextoNivelVehiculos, 520, 40);   
+        modificarAreaTexto(areaTextoEnemigosDerrotados, 160, 250);
+        modificarAreaTexto(areaTextoEscenarioEnemigosDerrotados, 280, 250);         
+        modificarAreaTexto(areaTextoVecesDestruido, 400, 250);
+        modificarAreaTexto(areaTextoEscenarioDestruido, 520, 250);
     }
     
     /**
      * Actualiza los datos de las areas de texto
      * @param idJugador 
      */
-    public void reiniciarAreaTextoVehiculos(int idJugador){        
+    public void reiniciarAreaTexto(int idJugador){        
         areaTextoVehiculos.setText(null); areaTextoVehiculos.append("VEHICULOS\n");
-        areaTextoTipoVehiculos.setText(null); areaTextoTipoVehiculos.append("TIPO DE VEHICULOS\n");
+        areaTextoTipoVehiculos.setText(null); areaTextoTipoVehiculos.append("TIPO\n");
+        
+        areaTextoEstadoVehiculos.setText(null); areaTextoEstadoVehiculos.append("ESTADO\n");
+        areaTextoNivelVehiculos.setText(null); areaTextoNivelVehiculos.append("NIVEL\n");
+        
+        areaTextoEnemigosDerrotados.setText(null); areaTextoEnemigosDerrotados.append("ENEMIGOS DER.\n");
+        areaTextoEscenarioEnemigosDerrotados.setText(null); areaTextoEscenarioEnemigosDerrotados.append("ESCENARIO\n");
+        
+        areaTextoVecesDestruido.setText(null); areaTextoVecesDestruido.append("MUERTES\n");
+        areaTextoEscenarioDestruido.setText(null); areaTextoEscenarioDestruido.append("ESCENARIO\n");
+        
         for(int i = 0; i < menus.datos.getSizeNombreVehiculos(idJugador); i++){
             areaTextoVehiculos.append(menus.datos.getNombreVehiculo(listaJugadores.getSelectedIndex(), i)+"\n");
             areaTextoTipoVehiculos.append(menus.datos.getTipoVehiculo(listaJugadores.getSelectedIndex(), i)+"\n");
+            
+            areaTextoEstadoVehiculos.append(menus.datos.getListaJugadores().get(listaJugadores.getSelectedIndex()).vehiculos.get(i).isEstado()+"\n");
+            areaTextoNivelVehiculos.append(menus.datos.getListaJugadores().get(listaJugadores.getSelectedIndex()).vehiculos.get(i).getNivel()+"\n");
+            
+            areaTextoEnemigosDerrotados.append(menus.datos.getListaJugadores().get(listaJugadores.getSelectedIndex()).vehiculos.get(i).getEnemigosDerrotados()+"\n");
+            areaTextoEscenarioEnemigosDerrotados.append(menus.datos.getListaJugadores().get(listaJugadores.getSelectedIndex()).vehiculos.get(i).getEscenarioEnemigosDerrotados(i)+"\n");
+            
+            areaTextoVecesDestruido.append(menus.datos.getListaJugadores().get(listaJugadores.getSelectedIndex()).vehiculos.get(i).getVecesDestruido()+"\n");
+            areaTextoEscenarioDestruido.append(menus.datos.getListaJugadores().get(listaJugadores.getSelectedIndex()).vehiculos.get(i).getEscenarioVecesDestruido(i)+"\n");
         }
     }
     
