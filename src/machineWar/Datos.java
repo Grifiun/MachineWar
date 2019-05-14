@@ -35,7 +35,7 @@ public class Datos {
                 
                 for(int j = 0; j < listaJugadores.get(j).getSizeNombreVehiculos(); j++){
                     if(j == 0)
-                    pw.println("<tr>\n<th>  JUGADOR  </th>\n<th>  NOMBRE  </th>\n<th> TIPO    </th>\n<th> ESTADO  </th>\n<th> NIVEL   </th>\n<th> ENEMIGOS DER.   </th>\n<th> DESTRUCCIONES   </th>\n</tr>");
+                    pw.println("<tr>\n<th>  JUGADOR  </th>\n<th>  NOMBRE  </th>\n<th> TIPO    </th>\n<th> ESTADO  </th>\n<th> NIVEL   </th>\n<th> ENEMIGOS DER.   </th>\n<th> ESCENARIO   </th>\n<th> DESTRUCCIONES   </th>\n<th> ESCENARIO   </th>\n</tr>");
                     pw.println("\n<tr>");
                     pw.println("\n<td>  " + listaJugadores.get(i).getNombre() + "  </td>");
                     pw.println("\n<td>  " + listaJugadores.get(i).getNombreVehiculo(j) + "  </td>");
@@ -43,7 +43,9 @@ public class Datos {
                     pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).isEstado() + "   </td>");
                     pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).getNivel() + "   </td>");
                     pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).getEnemigosDerrotados() + "  </td>");
+                    pw.println("\n<td>  " + "---------" + "  </td>");
                     pw.println("\n<td>  " + listaJugadores.get(i).vehiculos.get(j).getVecesDestruido() + "  </td>");
+                    pw.println("\n<td>  " + "---------" + "  </td>");
                     pw.println("\n</tr>");
                 }
                 
